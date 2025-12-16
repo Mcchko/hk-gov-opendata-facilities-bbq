@@ -44,7 +44,7 @@
         header {
             background-color: #2c3e50;
             color: white;
-            padding: 1.5rem;
+            padding: 1rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -54,7 +54,7 @@
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.8rem;
             opacity: 0.8;
         }
 
@@ -66,7 +66,7 @@
 
         #map {
             flex: 1;
-            min-height: 380px;
+            min-height: 320px;
         }
 
         .sidebar {
@@ -80,7 +80,7 @@
         }
 
         .sidebar-header {
-            padding: 1rem;
+            padding: 0.3rem;
             background-color: #3498db;
             color: white;
             font-weight: bold;
@@ -137,6 +137,7 @@
             font-size: 0.85rem;
             color: #27ae60;
             margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
         }
 
         .controls {
@@ -145,13 +146,9 @@
             border-top: 1px solid #ddd;
         }
 
-        .filter-control {
-            margin-bottom: 1rem;
-        }
-
         .filter-control label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             font-weight: 600;
             color: #2c3e50;
         }
@@ -171,12 +168,11 @@
             padding: 0.5rem;
             background-color: #f1f8ff;
             border-radius: 4px;
-            margin-top: 1rem;
         }
 
         @media (max-width: 768px) {
             #map {
-                max-height: 380px;
+                max-height: 320px;
             }
 
             .content {
@@ -241,7 +237,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>香港燒烤地點地圖</h1>
+            <h3>香港燒烤地點地圖</h3>
             <div class="subtitle">全香港公共燒烤地點互動地圖</div>
         </header>
 
@@ -259,10 +255,6 @@
                         <select id="districtFilter">
                             <option value="all">所有地區</option>
                         </select>
-                    </div>
-
-                    <div class="stats">
-                        <span id="siteCount">42</span> 個地點顯示中
                     </div>
                 </div>
 
@@ -390,7 +382,6 @@
 
             // 更新側邊欄標題
             document.querySelector('.sidebar-header').textContent = `燒烤地點 (${bbqData.length}個位置)`;
-            document.getElementById('siteCount').textContent = bbqData.length;
 
             // 初始化顯示所有標記
             filterMarkersAndList();
@@ -441,9 +432,6 @@
                     const showItem = currentFilter === 'all' || item.dataset.district === currentFilter;
                     item.style.display = showItem ? 'flex' : 'none';
                 });
-
-                // 更新計數
-                document.getElementById('siteCount').textContent = visibleCount;
 
                 // 更新側邊欄標題
                 document.querySelector('.sidebar-header').textContent =
